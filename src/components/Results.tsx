@@ -4,9 +4,10 @@ import { RefreshCw, Calendar, AlertTriangle, CheckCircle, AlertCircle } from 'lu
 interface ResultsProps {
   score: number;
   onReset: () => void;
+  setIsModalOpen: (isOpen: boolean) => void;
 }
 
-const Results: React.FC<ResultsProps> = ({ score, onReset }) => {
+const Results: React.FC<ResultsProps> = ({ score, onReset, setIsModalOpen }) => {
   const getRiskLevel = () => {
     if (score <= 2) return { 
       level: 'Low Risk', 
@@ -31,12 +32,10 @@ const Results: React.FC<ResultsProps> = ({ score, onReset }) => {
   const risk = getRiskLevel();
   const RiskIcon = risk.icon;
 
-  const handleBookAppointment = () => {
-    window.open('https://demo.spaundertechhosting.com/client-requests/', '_blank');
-  };
+
 
   return (
-    <div className="bg-white rounded-xl shadow-lg p-6 text-center animate-fade-in max-w-sm mx-auto transform hover:scale-102 transition-all duration-300">
+    <div className="bg-white rounded-xl shadow-2xl p-6 text-center animate-fade-in max-w-sm mx-auto transform hover:scale-102 transition-all duration-300">
       <div className="mb-6">
         <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-50 flex items-center justify-center">
           <RiskIcon className={`w-8 h-8 text-${risk.color}-500 animate-pulse`} />
@@ -55,12 +54,13 @@ const Results: React.FC<ResultsProps> = ({ score, onReset }) => {
 
       <div className="flex gap-3 justify-center">
         <button
-          onClick={handleBookAppointment}
+          onClick={()=> setIsModalOpen(true)}
           className="flex-1 inline-flex items-center justify-center px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-200 gap-2 text-sm hover:scale-105 shadow-sm hover:shadow-md"
         >
           <Calendar className="w-4 h-4" />
           Book Appointment
         </button>
+             
         <button
           onClick={onReset}
           className="flex-1 inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-200 gap-2 text-sm hover:scale-105 shadow-sm hover:shadow-md"
@@ -69,6 +69,7 @@ const Results: React.FC<ResultsProps> = ({ score, onReset }) => {
           Start Again
         </button>
       </div>
+      
     </div>
   );
 };

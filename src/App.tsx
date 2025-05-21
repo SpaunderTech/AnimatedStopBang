@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calculator, RefreshCw } from 'lucide-react';
+import { Calculator, RefreshCw, XIcon } from 'lucide-react';
 import BMICalculator from './components/BMICalculator';
 import QuestionCard from './components/QuestionCard';
 import Results from './components/Results';
@@ -66,6 +66,7 @@ const questions: Question[] = [
 function App() {
   const [answers, setAnswers] = useState<Record<string, boolean>>({});
   const [showBMICalculator, setShowBMICalculator] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleAnswer = (questionId: string, value: boolean) => {
     setAnswers(prev => ({ ...prev, [questionId]: value }));
@@ -86,20 +87,20 @@ function App() {
   const allQuestionsAnswered = answeredCount === questions.length;
 
   return (
-    <div className="h-[720px] w-[720px] mx-auto bg-gray-50 overflow-auto">
-      <div className="p-4">
-        <header className="text-center mb-3">
-          <h1 className="text-xl font-bold text-gray-900 mb-1">
+    <div className="h-[700px] w-[100%] mx-auto bg-gray-50 overflow-auto border-rounded-lg shadow-lg">
+      <div className="p-8">
+        <header className="text-center mb-6">
+          <h1 className="text-xl font-bold text-gray-900 mb-2">
             STOP-BANG Sleep Apnea Assessment
           </h1>
-          <div className="flex items-center justify-center gap-2">
-            <div className="h-1.5 bg-blue-100 rounded-full w-32">
+          <div className="flex items-center justify-center gap-4">
+            <div className="h-2.5 bg-blue-100 rounded-full w-32">
               <div 
-                className="h-1.5 bg-blue-500 rounded-full transition-all duration-500"
+                className="h-2.5 bg-blue-500 rounded-full transition-all duration-500"
                 style={{ width: `${(answeredCount / questions.length) * 100}%` }}
               />
             </div>
-            <span className="text-xs text-gray-600">
+            <span className="text-sm text-gray-600">
               {answeredCount} of {questions.length}
             </span>
           </div>
@@ -108,7 +109,7 @@ function App() {
         <Disclaimer />
 
         {!allQuestionsAnswered ? (
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-2 gap-6">
             {questions.map((question) => (
               <QuestionCard
                 key={question.id}
@@ -123,6 +124,7 @@ function App() {
           <Results 
             score={Object.values(answers).filter(Boolean).length}
             onReset={resetQuestions}
+            setIsModalOpen={() => setIsModalOpen(true)}
           />
         )}
 
@@ -140,6 +142,19 @@ function App() {
           <BMICalculator onClose={handleBMICalculatorClose} />
         )}
       </div>
+      {isModalOpen && (
+              <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
+                <div className="mt-5 relative bg-white rounded-lg overflow-hidden w-[80vh] max-w-4xl h-[95%] shadow-xl">
+                  <button
+                    onClick={() => setIsModalOpen(false)}
+                    className="absolute top-3 right-3 text-gray-600 hover:text-black"
+                  >
+                    <XIcon className="w-6 h-6" />
+                  </button>
+                  <iframe className="asana-embed-iframe" height="100%" width = "100%"  src="https://form.asana.com/?k=YSgzR75YdbMhdqj4DtOK1g&d=114317148620698&embed=true"></iframe>
+                </div>
+              </div>
+            )} 
     </div>
   );
 }

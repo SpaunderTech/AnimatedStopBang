@@ -3,7 +3,7 @@ import { AlertCircle } from 'lucide-react';
 
 const Disclaimer: React.FC = () => {
   return (
-    <div className="bg-blue-50 border border-blue-200 rounded-lg p-2.5 mb-3 text-xs text-blue-900">
+    <div className="bg-blue-50 border border-blue-200 rounded-lg p-2.5 mb-5 text-xs text-blue-900">
       <div className="flex gap-1.5 items-start">
         <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
         <div>
