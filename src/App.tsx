@@ -87,7 +87,7 @@ function App() {
   const allQuestionsAnswered = answeredCount === questions.length;
 
   return (
-    <div className="h-[700px] w-[100%] mx-auto bg-gray-50 overflow-auto border-rounded-lg shadow-lg">
+    <div className="h-[750px] w-[750px] mx-auto bg-gray-50 overflow-auto border-rounded-lg shadow-lg">
       <div className="p-8">
         <header className="text-center mb-6">
           <h1 className="text-xl font-bold text-gray-900 mb-2">
@@ -143,15 +143,16 @@ function App() {
         )}
       </div>
       {isModalOpen && (
-              <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50">
-                <div className="mt-5 relative bg-white rounded-lg overflow-hidden w-[80vh] max-w-4xl h-[95%] shadow-xl">
+              <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+                <div className="m-auto relative bg-white rounded-lg overflow-hidden w-[100%] max-w-6xl  h-[100%] shadow-lg">
                   <button
                     onClick={() => setIsModalOpen(false)}
                     className="absolute top-3 right-3 text-gray-600 hover:text-black"
                   >
-                    <XIcon className="w-6 h-6" />
+                    <XIcon className="w-8 h-8" />
                   </button>
-                  <iframe className="asana-embed-iframe" height="100%" width = "100%"  src="https://form.asana.com/?k=YSgzR75YdbMhdqj4DtOK1g&d=114317148620698&embed=true"></iframe>
+                  <iframe className="w-full h-full"
+                   src="https://outlook.office.com/book/PatientInitialEngagement@dedicatedsleep.net/"></iframe>
                 </div>
               </div>
             )} 
