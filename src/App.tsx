@@ -87,8 +87,8 @@ function App() {
   const allQuestionsAnswered = answeredCount === questions.length;
 
   return (
-    <div className="h-[750px] w-[750px] mx-auto bg-gray-50 overflow-auto border-rounded-lg shadow-lg">
-      <div className="p-8">
+    <div className="w-full max-w-3xl min-h-screeen mx-auto bg-gray-50 overflow-auto border-rounded-lg shadow-lg">
+      <div className="px-4 sm:px-8 py-8">
         <header className="text-center mb-6">
           <h1 className="text-xl font-bold text-gray-900 mb-2">
             STOP-BANG Sleep Apnea Assessment
@@ -109,7 +109,7 @@ function App() {
         <Disclaimer />
 
         {!allQuestionsAnswered ? (
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {questions.map((question) => (
               <QuestionCard
                 key={question.id}
@@ -143,7 +143,7 @@ function App() {
         )}
       </div>
       {isModalOpen && (
-              <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+              <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-3">
                 <div className="m-auto relative bg-white rounded-lg overflow-hidden w-[100%] max-w-6xl  h-[100%] shadow-lg">
                   <button
                     onClick={() => setIsModalOpen(false)}
